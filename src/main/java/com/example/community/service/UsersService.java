@@ -7,4 +7,5 @@ public interface UsersService {
     void insertuUser(Users users);
 
     Users findByToken(String token);
+    Users findByAccountId( String accountId);
 }
