@@ -7,8 +7,28 @@ public class Users implements Serializable {
     private String name;
     private String accountId;
     private String token;
-    private String gmtCreate;
+    private String gmtcreate;
     private String gmtmodified;
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    private String bio;
+
+    public String getAvatarurl() {
+        return avatarurl;
+    }
+
+    public void setAvatarurl(String avatarurl) {
+        this.avatarurl = avatarurl;
+    }
+
+    private String avatarurl;
 
     private static final long serialVersionUID = 1L;
 
@@ -44,12 +64,12 @@ public class Users implements Serializable {
         this.token = token;
     }
 
-    public String getGmtCreate() {
-        return gmtCreate;
+    public String getGmtcreate() {
+        return gmtcreate;
     }
 
-    public void setGmtCreate(String gmtCreate) {
-        this.gmtCreate = gmtCreate;
+    public void setGmtcreate(String gmtcreate) {
+        this.gmtcreate = gmtcreate;
     }
 
     public String getGmtmodified() {
@@ -71,8 +91,10 @@ public class Users implements Serializable {
                 ", name='" + name + '\'' +
                 ", accountId='" + accountId + '\'' +
                 ", token='" + token + '\'' +
-                ", gmtCreate='" + gmtCreate + '\'' +
+                ", gmtcreate='" + gmtcreate + '\'' +
                 ", gmtmodified='" + gmtmodified + '\'' +
+                ", bio='" + bio + '\'' +
+                ", avatarurl='" + avatarurl + '\'' +
                 '}';
     }
 }

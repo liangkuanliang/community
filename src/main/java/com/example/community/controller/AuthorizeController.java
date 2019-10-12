@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -37,7 +40,6 @@ public class AuthorizeController {
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code")String code,
                            @RequestParam(name="state")String state,
-                           HttpServletRequest request,
                            HttpServletResponse response){
         AccessTokenDTO accessTokenDTO=new AccessTokenDTO();
         accessTokenDTO.setState(state);
@@ -58,12 +60,13 @@ public class AuthorizeController {
                 users.setToken(token);
                 users.setName(githubUser.getName());
                 users.setAccountId(githubUser.getId());
-                users.setGmtCreate(String.valueOf(System.currentTimeMillis()));
-                users.setGmtmodified(users.getGmtCreate());
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                users.setGmtcreate(df.format(new Date()));
+                users.setGmtmodified(df.format(new Date()));
                 usersService.insertuUser(users);
 
                 response.addCookie(new Cookie("token",token));
-                /*request.getSession().setAttribute("user",githubUser);*/
+
                 return "redirect:/";
             }else {
                 return "redirect:/";
@@ -72,4 +75,6 @@ public class AuthorizeController {
         }
 
     }
+
+
 }

@@ -12,7 +12,7 @@ public interface UserMapper {
     @Select("select * from users")
     public Users selectUser();
 
-    @Insert("INSERT INTO users (name,accountId,token,gmtCreate,gmtmodified) VALUES (#{name},#{accountId},#{token},#{gmtCreate},#{gmtmodified})")
+    @Insert("INSERT INTO users (name,accountId,token,gmtCreate,gmtmodified) VALUES (#{name},#{accountId},#{token},#{gmtcreate},#{gmtmodified})")
     public void insertuUser(Users users);
 
     @Select("select * from users where token=#{token}")
@@ -20,4 +20,7 @@ public interface UserMapper {
 
     @Select("select * from users where accountId=#{accountId}")
     Users findByAccountId(@Param("accountId") String accountId);
+
+    @Select("select * from users where id=#{id}")
+    Users findById(@Param("id")String id);
 }
