@@ -1,8 +1,6 @@
 package com.example.community.controller;
 
 import com.example.community.dto.QuestionDTO;
-import com.example.community.mapper.QuestionMapper;
-import com.example.community.mapper.UserMapper;
 import com.example.community.model.Users;
 import com.example.community.service.QuesttionService;
 import com.example.community.service.UsersService;

@@ -84,17 +84,5 @@ public class Users implements Serializable {
         return serialVersionUID;
     }
 
-    @Override
-    public String toString() {
-        return "Users{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", accountId='" + accountId + '\'' +
-                ", token='" + token + '\'' +
-                ", gmtcreate='" + gmtcreate + '\'' +
-                ", gmtmodified='" + gmtmodified + '\'' +
-                ", bio='" + bio + '\'' +
-                ", avatarurl='" + avatarurl + '\'' +
-                '}';
-    }
+
 }

@@ -2,6 +2,7 @@ package com.example.community.dto;
 
 import com.example.community.model.Users;
 
+
 public class QuestionDTO {
     private int id;
     private String title;
