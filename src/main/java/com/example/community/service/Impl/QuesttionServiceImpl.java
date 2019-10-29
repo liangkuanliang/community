@@ -1,11 +1,13 @@
 package com.example.community.service.Impl;
 
+import com.example.community.dto.PageinationDTO;
 import com.example.community.dto.QuestionDTO;
 import com.example.community.mapper.QuestionMapper;
 import com.example.community.mapper.UserMapper;
 import com.example.community.model.Question;
 import com.example.community.model.Users;
 import com.example.community.service.QuesttionService;
+import com.example.community.utils.PageUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,9 +29,12 @@ public class QuesttionServiceImpl implements QuesttionService {
         }
 
     @Override
-    public List<QuestionDTO> selectQuestion() {
-        List<Question> questions=questionMapper.selectQuestion();
+    public PageinationDTO selectQuestion(Integer page, Integer size) {
+        Integer offtest=size*(page-1);
+        List<Question> questions=questionMapper.selectQuestion(offtest,size);
         List<QuestionDTO> questionDTOList=new ArrayList<>();
+
+        PageinationDTO pageinationDTO=new PageinationDTO();
         for (Question question:questions){
             Users users=userMapper.findById(question.getCreator());
             QuestionDTO questionDTO=new QuestionDTO();
@@ -37,7 +42,10 @@ public class QuesttionServiceImpl implements QuesttionService {
             questionDTO.setUsers(users);
             questionDTOList.add(questionDTO);
         }
-        return questionDTOList;
+        pageinationDTO.setQuestions(questionDTOList);
+        Integer count=questionMapper.selectCount();
+        pageinationDTO.setPageination(count,page,size);
+        return pageinationDTO;
     }
 
 }
